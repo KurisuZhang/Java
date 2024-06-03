@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TodoManager {
-    private static TaskDAO taskDAO = new TaskDAO();
+    private static TaskService taskService = new TaskService();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -54,8 +54,7 @@ public class TodoManager {
         System.out.print("Enter the assignee: ");
         String assignedTo = scanner.nextLine();
 
-        Task task = new Task(title, text, assignedTo);
-        taskDAO.addTask(task);
+        taskService.addTask(title, text, assignedTo);
     }
 
     private static void updateTask(Scanner scanner) {
@@ -70,7 +69,7 @@ public class TodoManager {
         System.out.print("Enter the new assignee: ");
         String updatedAssignedTo = scanner.nextLine();
 
-        taskDAO.updateTask(taskId, updatedTitle, updatedText, updatedAssignedTo);
+        taskService.updateTask(taskId, updatedTitle, updatedText, updatedAssignedTo);
     }
 
     private static void deleteTask(Scanner scanner) {
@@ -78,12 +77,12 @@ public class TodoManager {
         int taskId = scanner.nextInt();
         scanner.nextLine(); // Consume newline
 
-        taskDAO.deleteTask(taskId);
+        taskService.deleteTask(taskId);
     }
 
     private static void searchTask(Scanner scanner) {
         System.out.print("Enter the task title, text, or assignee to search: ");
         String searchQuery = scanner.nextLine();
-        taskDAO.searchTask(searchQuery);
+        taskService.searchTask(searchQuery);
     }
 }

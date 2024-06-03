@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class TodoManager {
-    private static TaskService taskService = new TaskService();
+    TaskService taskService = new TaskService();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        TodoManager todoManager = new TodoManager();
         int choice;
 
         do {
@@ -14,22 +15,22 @@ public class TodoManager {
 
             switch (choice) {
                 case 1:
-                    addTask(scanner);
+                    todoManager.addTask(scanner);
                     break;
                 case 2:
-                    updateTask(scanner);
+                    todoManager.updateTask(scanner);
                     break;
                 case 3:
-                    deleteTask(scanner);
+                    todoManager.deleteTask(scanner);
                     break;
                 case 4:
-                    searchTask(scanner);
+                    todoManager.searchTask(scanner);
                     break;
                 case 0:
-                    System.out.println("Exiting the Todo Manager. Goodbye!");
+                    System.out.println("Exiting");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a valid option.");
+                    System.out.println("Invalid choice");
             }
         } while (choice != 0);
 
@@ -46,7 +47,7 @@ public class TodoManager {
         System.out.print("Enter your choice: ");
     }
 
-    private static void addTask(Scanner scanner) {
+    private void addTask(Scanner scanner) {
         System.out.print("Enter the task title: ");
         String title = scanner.nextLine();
         System.out.print("Enter the task text: ");
@@ -57,7 +58,7 @@ public class TodoManager {
         taskService.addTask(title, text, assignedTo);
     }
 
-    private static void updateTask(Scanner scanner) {
+    private void updateTask(Scanner scanner) {
         System.out.print("Enter the task ID to update: ");
         int taskId = scanner.nextInt();
         scanner.nextLine(); // Consume newline
@@ -72,7 +73,7 @@ public class TodoManager {
         taskService.updateTask(taskId, updatedTitle, updatedText, updatedAssignedTo);
     }
 
-    private static void deleteTask(Scanner scanner) {
+    private void deleteTask(Scanner scanner) {
         System.out.print("Enter the task ID to delete: ");
         int taskId = scanner.nextInt();
         scanner.nextLine(); // Consume newline
@@ -80,7 +81,7 @@ public class TodoManager {
         taskService.deleteTask(taskId);
     }
 
-    private static void searchTask(Scanner scanner) {
+    private void searchTask(Scanner scanner) {
         System.out.print("Enter the task title, text, or assignee to search: ");
         String searchQuery = scanner.nextLine();
         taskService.searchTask(searchQuery);

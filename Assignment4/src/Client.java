@@ -23,19 +23,19 @@ public class Client extends User {
 
             switch (choice) {
                 case 1:
-                    todoManager.addTask(scanner);
+                    addTask(todoManager, scanner);
                     break;
                 case 2:
-                    todoManager.updateTask(scanner);
+                    updateTask(todoManager, scanner);
                     break;
                 case 3:
-                    todoManager.deleteTask(scanner);
+                    deleteTask(todoManager, scanner);
                     break;
                 case 4:
-                    todoManager.searchTask(scanner);
+                    searchTask(todoManager, scanner);
                     break;
                 case 5:
-                    todoManager.assignTask(scanner);
+                    assignTask(todoManager, scanner);
                     break;
                 case 0:
                     System.out.println("Logging out");
@@ -44,6 +44,26 @@ public class Client extends User {
                     System.out.println("Invalid choice");
             }
         } while (choice != 0);
+    }
+
+    private void addTask(TodoManager todoManager, Scanner scanner) {
+        todoManager.addTask(scanner);
+    }
+
+    private void updateTask(TodoManager todoManager, Scanner scanner) {
+        todoManager.updateTask(scanner);
+    }
+
+    private void deleteTask(TodoManager todoManager, Scanner scanner) {
+        todoManager.deleteTask(scanner);
+    }
+
+    private void searchTask(TodoManager todoManager, Scanner scanner) {
+        todoManager.searchTask(scanner);
+    }
+
+    private void assignTask(TodoManager todoManager, Scanner scanner) {
+        todoManager.assignTask(scanner);
     }
 }
 

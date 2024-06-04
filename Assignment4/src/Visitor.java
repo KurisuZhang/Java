@@ -19,7 +19,7 @@ public class Visitor extends User {
 
             switch (choice) {
                 case 1:
-                    todoManager.viewAssignedTasks(scanner, this.username);
+                    viewAssignedTasks(todoManager, scanner);
                     break;
                 case 0:
                     System.out.println("Logging out");
@@ -28,6 +28,10 @@ public class Visitor extends User {
                     System.out.println("Invalid choice");
             }
         } while (choice != 0);
+    }
+
+    private void viewAssignedTasks(TodoManager todoManager, Scanner scanner) {
+        todoManager.viewAssignedTasks(scanner, this.username);
     }
 }
 

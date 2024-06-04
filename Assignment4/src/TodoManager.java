@@ -2,13 +2,10 @@ import java.util.Scanner;
 
 public class TodoManager {
     private TaskService taskService = new TaskService();
-    private User[] users = new User[10];
-    private int userCount = 0;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TodoManager todoManager = new TodoManager();
-        todoManager.registerDefaultUsers(); // Register some default users for testing
         todoManager.run(scanner);
     }
 
@@ -27,13 +24,13 @@ public class TodoManager {
 
             switch (choice) {
                 case 1:
-                    currentUser = login(scanner);
+                    currentUser = taskService.login(scanner);
                     if (currentUser != null) {
                         currentUser.displayMenu(this, scanner);
                     }
                     break;
                 case 2:
-                    registerNewUser(scanner);
+                    taskService.registerNewUser(scanner);
                     break;
                 case 0:
                     System.out.println("Exiting");
@@ -44,49 +41,6 @@ public class TodoManager {
         } while (choice != 0);
 
         scanner.close();
-    }
-
-    private User login(Scanner scanner) {
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-
-        for (int i = 0; i < userCount; i++) {
-            if (users[i].getUsername().equals(username) && users[i].getPassword().equals(password)) {
-                return users[i];
-            }
-        }
-
-        System.out.println("Invalid username or password.");
-        return null;
-    }
-
-    private void registerDefaultUsers() {
-        users[userCount++] = new Client("client1", "password");
-        users[userCount++] = new Visitor("visitor1", "password");
-    }
-
-    private void registerNewUser(Scanner scanner) {
-        if (userCount >= users.length) {
-            System.out.println("User list is full! Cannot register more users.");
-            return;
-        }
-
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-        System.out.print("Are you a client or a visitor? (C/V): ");
-        char userType = scanner.nextLine().charAt(0);
-
-        if (userType == 'C' || userType == 'c') {
-            users[userCount++] = new Client(username, password);
-        } else if (userType == 'V' || userType == 'v') {
-            users[userCount++] = new Visitor(username, password);
-        } else {
-            System.out.println("Invalid user type. Registration failed.");
-        }
     }
 
     public void addTask(Scanner scanner) {

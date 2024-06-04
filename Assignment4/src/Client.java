@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Client extends User {
 
     public Client(String username, String password) {
-        super(username, password);
+        super(username, password, "Client");
     }
 
     @Override
@@ -46,3 +46,4 @@ public class Client extends User {
         } while (choice != 0);
     }
 }
+

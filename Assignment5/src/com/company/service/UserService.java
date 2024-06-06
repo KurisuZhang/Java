@@ -15,8 +15,24 @@ public class UserService {
     }
 
     public void registerNewUser(Scanner scanner) {
-        if (!userDAO.addUser(createUser(scanner))) {
-            System.out.println("User list is full! Cannot register more users.");
+
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        System.out.print("Are you a client or a visitor? (C/V): ");
+        char userType = scanner.nextLine().charAt(0);
+
+        if (userType == 'C' || userType == 'c') {
+            if (!userDAO.addUser(new Client(username, password))){
+                System.out.println("User list is full! Cannot register more users.");
+            }
+        } else if (userType == 'V' || userType == 'v') {
+            if (!userDAO.addUser(new Visitor(username, password))){
+                System.out.println("User list is full! Cannot register more users.");
+            }
+        } else {
+            System.out.println("Invalid user type. Registration failed.");
         }
     }
 
@@ -34,23 +50,6 @@ public class UserService {
         }
     }
 
-    private User createUser(Scanner scanner) {
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-        System.out.print("Are you a client or a visitor? (C/V): ");
-        char userType = scanner.nextLine().charAt(0);
-
-        if (userType == 'C' || userType == 'c') {
-            return new Client(username, password);
-        } else if (userType == 'V' || userType == 'v') {
-            return new Visitor(username, password);
-        } else {
-            System.out.println("Invalid user type. Registration failed.");
-            return null;
-        }
-    }
 
     private void registerDefaultUsers() {
         userDAO.addUser(new Client("client", "client"));

@@ -1,5 +1,7 @@
 package com.company.service;
 
+import java.util.Arrays;
+
 import com.company.dao.TaskDAO;
 import com.company.model.Task;
 
@@ -42,10 +44,21 @@ public class TaskService {
         }
     }
 
-    public Task[] getAllTasks() {
-        return taskDAO.getAllTasks();
-    }
     public Task[] getTasksAssignedTo(String username) {
-        return taskDAO.getTasksAssignedTo(username);
+        Task[] result = new Task[taskDAO.taskCount];
+        int resultCount = 0;
+        for (int i = 0; i < taskDAO.taskCount; i++) {
+            if (taskDAO.tasks[i].getAssignedTo().equals(username)) {
+                result[resultCount++] = taskDAO.tasks[i];
+            }
+        }
+        return resultCount > 0 ? Arrays.copyOf(result, resultCount) : new Task[0];
     }
+
+
+
+    public Task[] getAllTasks() {
+        return Arrays.copyOf(taskDAO.tasks, taskDAO.taskCount);
+    }
+
 }

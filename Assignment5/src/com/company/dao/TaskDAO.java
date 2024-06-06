@@ -5,8 +5,8 @@ import com.company.model.Task;
 import java.util.Arrays;
 
 public class TaskDAO {
-    private Task[] tasks = new Task[10];
-    private int taskCount = 0;
+    public Task[] tasks = new Task[10];
+    public int taskCount = 0;
 
     public boolean addTask(Task task) {
         if (taskCount >= tasks.length) {
@@ -63,19 +63,6 @@ public class TaskDAO {
         return resultCount > 0 ? Arrays.copyOf(result, resultCount) : new Task[0];
     }
 
-    public Task[] getTasksAssignedTo(String username) {
-        Task[] result = new Task[taskCount];
-        int resultCount = 0;
-
-        for (int i = 0; i < taskCount; i++) {
-            if (tasks[i].getAssignedTo().equals(username)) {
-                result[resultCount++] = tasks[i];
-            }
-        }
-
-        return resultCount > 0 ? Arrays.copyOf(result, resultCount) : new Task[0];
-    }
-
     private Task getTaskById(int taskId) {
         for (int i = 0; i < taskCount; i++) {
             if (tasks[i].getId() == taskId) {
@@ -85,13 +72,4 @@ public class TaskDAO {
         return null;
     }
 
-//    private void getAllTasks() {
-//        for (com.company.model.Task task:tasks){
-//            System.out.println(task);
-//        }
-//    }
-
-    public Task[] getAllTasks() {
-        return Arrays.copyOf(tasks, taskCount);
-    }
 }

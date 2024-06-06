@@ -1,18 +1,22 @@
 package com.company.controller;
 
-import com.company.controller.TodoManager;
+import com.company.model.Task;
 import com.company.model.User;
+import com.company.service.TaskService;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Client extends User {
+    public TaskService taskService;
 
-    public Client(String username, String password) {
+    public Client(String username, String password, TaskService taskService) {
+
         super(username, password, "Client");
+        this.taskService = taskService;
     }
 
     @Override
-    public void displayMenu(TodoManager todoManager, Scanner scanner) {
+    public void displayMenu(Scanner scanner) {
         int choice;
         do {
             System.out.println("\nClient Menu:");
@@ -29,22 +33,22 @@ public class Client extends User {
 
             switch (choice) {
                 case 1:
-                    addTask(todoManager, scanner);
+                    addTask(scanner);
                     break;
                 case 2:
-                    updateTask(todoManager, scanner);
+                    updateTask(scanner);
                     break;
                 case 3:
-                    deleteTask(todoManager, scanner);
+                    deleteTask(scanner);
                     break;
                 case 4:
-                    searchTask(todoManager, scanner);
+                    searchTask(scanner);
                     break;
                 case 5:
-                    assignTask(todoManager, scanner);
+                    assignTask(scanner);
                     break;
                 case 6:
-                    sortTasks(todoManager, scanner);
+                    sortTasks(scanner);
                     break;
                 case 0:
                     System.out.println("Logging out");
@@ -55,29 +59,65 @@ public class Client extends User {
         } while (choice != 0);
     }
 
-    private void addTask(TodoManager todoManager, Scanner scanner) {
-        todoManager.addTask(scanner);
+    private void addTask(Scanner scanner) {
+
+        System.out.print("Enter task title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter task text: ");
+        String text = scanner.nextLine();
+        System.out.print("Enter username to assign the task: ");
+        String assignedTo = scanner.nextLine();
+        taskService.addTask(title, text, assignedTo);
     }
 
-    private void updateTask(TodoManager todoManager, Scanner scanner) {
-        todoManager.updateTask(scanner);
+    private void updateTask(Scanner scanner) {
+        System.out.print("Enter task ID to update: ");
+        int taskId = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter new task title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter new task text: ");
+        String text = scanner.nextLine();
+        System.out.print("Enter new username to assign the task: ");
+        String assignedTo = scanner.nextLine();
+        taskService.updateTask(taskId, title, text, assignedTo);
     }
 
-    private void deleteTask(TodoManager todoManager, Scanner scanner) {
-        todoManager.deleteTask(scanner);
+    private void deleteTask(Scanner scanner) {
+        System.out.print("Enter task ID to delete: ");
+        int taskId = scanner.nextInt();
+        taskService.deleteTask(taskId);
     }
 
-    private void searchTask(TodoManager todoManager, Scanner scanner) {
-        todoManager.searchTask(scanner);
+    private void searchTask(Scanner scanner) {
+        System.out.print("Enter search query: ");
+        String query = scanner.nextLine();
+        taskService.searchTask(query);
     }
 
-    private void assignTask(TodoManager todoManager, Scanner scanner) {
-        todoManager.assignTask(scanner);
+    private void assignTask(Scanner scanner) {
+        System.out.print("Enter task ID to assign: ");
+        int taskId = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter username to assign the task: ");
+        String assignedTo = scanner.nextLine();
+        taskService.updateTask(taskId, "", "", assignedTo);
     }
 
-    private void sortTasks(TodoManager todoManager, Scanner scanner) {
+    private void sortTasks(Scanner scanner) {
         System.out.print("Enter 'asc' for ascending order or 'desc' for descending order: ");
         String order = scanner.nextLine();
-        todoManager.sortTasks(order.equalsIgnoreCase("asc"));
+
+        List<Task> userTasks = new ArrayList<>();
+        Task[] tasks = taskService.getAllTasks();
+        Collections.addAll(userTasks, tasks);
+        if (order.equalsIgnoreCase("asc")) {
+            Collections.sort(userTasks, Comparator.comparing(Task::getId));
+        } else {
+            Collections.sort(userTasks, Comparator.comparing(Task::getId).reversed());
+        }
+        for (Task task : userTasks) {
+            System.out.println(task);
+        }
     }
 }

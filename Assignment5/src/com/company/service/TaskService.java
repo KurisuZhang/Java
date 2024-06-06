@@ -1,12 +1,12 @@
 package com.company.service;
 
-import java.util.Arrays;
-
 import com.company.dao.TaskDAO;
 import com.company.model.Task;
 
+import java.util.Arrays;
+
 public class TaskService {
-    private TaskDAO taskDAO = new TaskDAO();
+    private final TaskDAO taskDAO = new TaskDAO();
 
     public void addTask(String title, String text, String assignedTo) {
         Task task = new Task(title, text, assignedTo);
@@ -54,7 +54,6 @@ public class TaskService {
         }
         return resultCount > 0 ? Arrays.copyOf(result, resultCount) : new Task[0];
     }
-
 
 
     public Task[] getAllTasks() {

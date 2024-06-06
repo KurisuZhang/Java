@@ -1,7 +1,5 @@
 package com.company.model;
 
-import com.company.controller.TodoManager;
-
 import java.util.Scanner;
 
 public abstract class User {
@@ -27,5 +25,5 @@ public abstract class User {
         return role;
     }
 
-    public abstract void displayMenu(TodoManager todoManager, Scanner scanner);
+    public abstract void displayMenu(Scanner scanner);
 }

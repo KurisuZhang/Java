@@ -3,7 +3,7 @@ package com.company.model;
 public class Task {
     private static int nextId = 1; // Static variable to keep track of the next ID
 
-    private int id;
+    private final int id;
     private String title;
     private String text;
     private String assignedTo;

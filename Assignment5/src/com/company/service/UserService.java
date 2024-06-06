@@ -1,20 +1,16 @@
 package com.company.service;
 
-import com.company.dao.UserDAO;
 import com.company.controller.Client;
-import com.company.model.User;
 import com.company.controller.Visitor;
+import com.company.dao.UserDAO;
+import com.company.model.User;
 
 import java.util.Scanner;
 
 public class UserService {
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
-    public UserService() {
-        registerDefaultUsers();
-    }
-
-    public void registerNewUser(Scanner scanner) {
+    public void registerNewUser(Scanner scanner, TaskService taskService) {
 
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
@@ -24,11 +20,11 @@ public class UserService {
         char userType = scanner.nextLine().charAt(0);
 
         if (userType == 'C' || userType == 'c') {
-            if (!userDAO.addUser(new Client(username, password))){
+            if (!userDAO.addUser(new Client(username, password, taskService))) {
                 System.out.println("User list is full! Cannot register more users.");
             }
         } else if (userType == 'V' || userType == 'v') {
-            if (!userDAO.addUser(new Visitor(username, password))){
+            if (!userDAO.addUser(new Visitor(username, password, taskService))) {
                 System.out.println("User list is full! Cannot register more users.");
             }
         } else {
@@ -50,9 +46,4 @@ public class UserService {
         }
     }
 
-
-    private void registerDefaultUsers() {
-        userDAO.addUser(new Client("client", "client"));
-        userDAO.addUser(new Visitor("visitor", "visitor"));
-    }
 }

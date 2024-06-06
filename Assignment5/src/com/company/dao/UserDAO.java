@@ -3,7 +3,7 @@ package com.company.dao;
 import com.company.model.User;
 
 public class UserDAO {
-    private User[] users = new User[10];
+    private final User[] users = new User[10];
     private int userCount = 0;
 
     public boolean addUser(User user) {

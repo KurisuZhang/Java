@@ -1,6 +1,7 @@
-package com.company.model;
+package com.company.controller;
 
 import com.company.controller.TodoManager;
+import com.company.model.User;
 
 import java.util.Scanner;
 

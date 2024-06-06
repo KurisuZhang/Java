@@ -38,6 +38,7 @@ public class Client extends User {
                     assignTask(todoManager, scanner);
                     break;
                 case 0:
+                    System.out.println("choice: "+ choice);
                     System.out.println("Logging out");
                     break;
                 default:

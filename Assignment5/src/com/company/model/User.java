@@ -26,4 +26,6 @@ public abstract class User {
     }
 
     public abstract void displayMenu(Scanner scanner);
+
+    public abstract void sortTasks(Scanner scanner);
 }

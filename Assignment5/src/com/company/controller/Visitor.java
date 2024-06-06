@@ -98,7 +98,8 @@ public class Visitor extends User {
         }
     }
 
-    private void sortTasks(Scanner scanner) {
+    @Override
+    public void sortTasks(Scanner scanner) {
         System.out.print("Enter 'asc' for ascending order or 'desc' for descending order: ");
         String order = scanner.nextLine();
         List<Task> userTasks = new ArrayList<>();

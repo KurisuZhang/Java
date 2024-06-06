@@ -103,8 +103,8 @@ public class Client extends User {
         String assignedTo = scanner.nextLine();
         taskService.updateTask(taskId, "", "", assignedTo);
     }
-
-    private void sortTasks(Scanner scanner) {
+    @Override
+    public void sortTasks(Scanner scanner) {
         System.out.print("Enter 'asc' for ascending order or 'desc' for descending order: ");
         String order = scanner.nextLine();
 

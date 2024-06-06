@@ -1,4 +1,4 @@
-package com.company.controller;
+package com.company.model;
 
 import com.company.model.Task;
 import com.company.model.User;

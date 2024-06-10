@@ -1,22 +1,41 @@
 public class minDeleteToPalindrome {
     public static int minDeletionsToPalindrome(String s) {
         
+        if (s.length() == 0) {
+            return 0;
+        }
+
         int n = s.length();
         int[][] dp = new int[n][n];
 
-        for (int length = 2; length <= n; length++) {
-            for (int i = 0; i <= n - length; i++) {
-                int j = i + length - 1;
-                if (s.charAt(i) == s.charAt(j)) {
-                    dp[i][j] = dp[i + 1][j - 1];
-                } else {
-                    dp[i][j] = 1 + Math.min(dp[i + 1][j], dp[i][j - 1]);
+        for (int i = dp.length-1; i >= 0; i--) {
+
+            for (int j = i; j < dp.length; j++) {
+                
+                // one character
+                if (i==j) {
+                    dp[i][j] = 0;
+                
+                // two character
+                }else if (j-i==1) {
+                    dp[i][j] = (s.charAt(i) == s.charAt(j)) ? 0 : 1;
+
+                // three or more
+                } else{
+                    
+                    if (s.charAt(i) == s.charAt(j)) {
+                        dp[i][j] = dp[i+1][j-1];
+                    }else{
+                        dp[i][j] = Math.min(dp[i][j-1],dp[i+1][j])+1;
+                    }
                 }
             }
+            
         }
         return dp[0][n - 1];
     }
 
+    
     private static void test(String s, int expected) {
         int result = minDeletionsToPalindrome(s);
         if (result == expected) {

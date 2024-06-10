@@ -29,15 +29,15 @@ public class minDeleteToPalindrome {
     public static void main(String[] args) {
         String s = "aebcbda";
         System.out.println("Minimum deletions: " + minDeletionsToPalindrome(s));
-        test("aebcbda", 2);  // 删除 'e' 和 'd' 或 'a' 和 'a'
-        test("abca", 1);     // 删除 'c' 或 'b'
-        test("racecar", 0);  // 已经是回文
-        test("abcdef", 5);   // 删除 'a', 'b', 'c', 'd', 'e' 或者 'b', 'c', 'd', 'e', 'f'
-        test("madam", 0);    // 已经是回文
-        test("aabb", 2);     // 删除两个 'a' 或两个 'b'
-        test("abcdeca", 2);  // 删除 'b', ', 'e' 或其他组合acdca
-        test("abcd", 3);     // 删除 'a', 'b', 'c' 或其他组合
-        test("a", 0);        // 单个字符已经是回文
-        test("", 0);         // 空字符串已经是回文
+        test("aebcbda", 2); 
+        test("abca", 1);   
+        test("racecar", 0);
+        test("abcdef", 5);  
+        test("madam", 0);   
+        test("aabb", 2);  
+        test("abcdeca", 2);  
+        test("abcd", 3);     
+        test("a", 0);       
+        test("", 0);        
     }
 }

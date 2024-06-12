@@ -1,5 +1,9 @@
 package com.xxx.model;
 
+import com.xxx.exception.CRUDTaskException;
+import com.xxx.exception.CastingException;
+import com.xxx.exception.NullTaskException;
+
 import java.util.Scanner;
 
 public abstract class User {
@@ -25,7 +29,7 @@ public abstract class User {
         return role;
     }
 
-    public abstract void displayMenu(Scanner scanner);
+    public abstract void displayMenu() throws NullTaskException, CRUDTaskException, CastingException;
 
     public abstract void sortTasks(Scanner scanner);
 }

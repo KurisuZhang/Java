@@ -15,6 +15,8 @@ public class UserDAO {
     }
 
     public User getUserByUsername(String username) {
+
+        //todo
         for (int i = 0; i < userCount; i++) {
             if (users[i].getUsername().equals(username)) {
                 return users[i];

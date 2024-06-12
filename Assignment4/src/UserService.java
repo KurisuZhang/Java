@@ -40,7 +40,7 @@ public class UserService {
         } else if (userType == 'V' || userType == 'v') {
             return new Visitor(username, password);
         } else {
-            System.out.println("Invalid user type. Registration failed.");
+            System.out.println("Invalid user type for Client and Visitor. Registration failed.");
             return null;
         }
     }

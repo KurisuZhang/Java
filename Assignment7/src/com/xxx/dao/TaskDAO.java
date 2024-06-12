@@ -1,6 +1,6 @@
-package com.company.dao;
+package com.xxx.dao;
 
-import com.company.model.Task;
+import com.xxx.model.Task;
 
 import java.util.Arrays;
 

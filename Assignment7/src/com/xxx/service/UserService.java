@@ -1,9 +1,9 @@
-package com.company.service;
+package com.xxx.service;
 
-import com.company.model.Client;
-import com.company.model.Visitor;
-import com.company.dao.UserDAO;
-import com.company.model.User;
+import com.xxx.dao.UserDAO;
+import com.xxx.model.User;
+import com.xxx.model.Visitor;
+import com.xxx.model.Client;
 
 import java.util.Scanner;
 

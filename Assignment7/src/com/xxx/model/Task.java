@@ -1,4 +1,4 @@
-package com.company.model;
+package com.xxx.model;
 
 public class Task {
     private static int nextId = 1; // Static variable to keep track of the next ID

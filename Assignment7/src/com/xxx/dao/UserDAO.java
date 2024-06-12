@@ -1,6 +1,6 @@
-package com.company.dao;
+package com.xxx.dao;
 
-import com.company.model.User;
+import com.xxx.model.User;
 
 public class UserDAO {
     private final User[] users = new User[10];

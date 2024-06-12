@@ -1,4 +1,4 @@
-package com.company.model;
+package com.xxx.model;
 
 import java.util.Scanner;
 

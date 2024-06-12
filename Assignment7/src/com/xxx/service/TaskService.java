@@ -1,7 +1,7 @@
-package com.company.service;
+package com.xxx.service;
 
-import com.company.dao.TaskDAO;
-import com.company.model.Task;
+import com.xxx.dao.TaskDAO;
+import com.xxx.model.Task;
 
 import java.util.Arrays;
 

@@ -1,8 +1,6 @@
-package com.company.model;
+package com.xxx.model;
 
-import com.company.model.Task;
-import com.company.model.User;
-import com.company.service.TaskService;
+import com.xxx.service.TaskService;
 
 import java.util.*;
 

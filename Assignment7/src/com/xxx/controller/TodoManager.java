@@ -1,8 +1,8 @@
-package com.company.controller;
+package com.xxx.controller;
 
-import com.company.model.User;
-import com.company.service.TaskService;
-import com.company.service.UserService;
+import com.xxx.model.User;
+import com.xxx.service.UserService;
+import com.xxx.service.TaskService;
 
 import java.util.Scanner;
 

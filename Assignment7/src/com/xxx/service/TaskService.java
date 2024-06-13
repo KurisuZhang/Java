@@ -14,7 +14,7 @@ public class TaskService {
         if (taskDAO.addTask(task)) {
             System.out.println("Task added successfully.");
         } else {
-
+            throw new CRUDTaskException("Task added failed.");
         }
     }
 

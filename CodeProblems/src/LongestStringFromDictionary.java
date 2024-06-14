@@ -3,9 +3,9 @@ import java.util.*;
 public class LongestStringFromDictionary {
     public static void main(String[] args) {
         List<String> dict = Arrays.asList("ale", "apple", "monkey", "plea");
-        String str = "abpcplea";
 
-        System.out.println(findLongestString(dict, str));
+        System.out.println(findLongestString(dict, "abpcplea"));
+        System.out.println(findLongestString(dict, "mtoantkedy"));
     }
 
     public static String findLongestString(List<String> dict, String str) {

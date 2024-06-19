@@ -66,6 +66,12 @@ public class EnrolleeProcessor {
             }
             System.out.println(); 
         }
+
+        try {
+            writeGroupedEnrollees(groupedEnrollees);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
   
     }
 
@@ -106,16 +112,20 @@ public class EnrolleeProcessor {
         return groupedEnrollees;
     }
 
-    // private static void writeGroupedEnrollees(Map<String, List<Enrollee>> groupedEnrollees) throws IOException {
-    //     for (Map.Entry<String, List<Enrollee>> entry : groupedEnrollees.entrySet()) {
-    //         String fileName = entry.getKey().replaceAll("\\s+", "_") + ".csv";
-    //         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
-    //             for (Enrollee enrollee : entry.getValue()) {
-    //                 writer.write(enrollee.toString());
-    //                 writer.newLine();
-    //             }
-    //         }
-    //     }
-    // }
+    private static void writeGroupedEnrollees(Map<String, TreeSet<Enrollee>> groupedEnrollees) throws IOException {
+        for (Map.Entry<String, TreeSet<Enrollee>> entry : groupedEnrollees.entrySet()) {
+            String fileName = entry.getKey().replaceAll("\\s+", "_") + ".csv";
+            try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
+                for (Enrollee enrollee : entry.getValue()) {
+                    writer.write(enrollee.userId + ",");
+                    writer.write(enrollee.firstName + ",");
+                    writer.write(enrollee.lastName + ",");
+                    writer.write(enrollee.version + ",");
+                    writer.write(enrollee.insuranceCompany);
+                    writer.newLine();
+                }
+            }
+        }
+    }
 }
 

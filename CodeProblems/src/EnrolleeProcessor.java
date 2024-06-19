@@ -55,10 +55,10 @@ public class EnrolleeProcessor {
     public static void main(String[] args) {
         String inputFilePath = "CodeProblems/src/data.csv";
 
-        Set<Enrollee> enrollees = readCsv(inputFilePath);
-        Map<String, Set<Enrollee>> groupedEnrollees = groupEnrolleesByInsuranceCompany(enrollees);
+        TreeSet<Enrollee> enrollees = readCsv(inputFilePath);
+        Map<String, TreeSet<Enrollee>> groupedEnrollees = groupEnrolleesByInsuranceCompany(enrollees);
         
-        for (Map.Entry<String, Set<Enrollee>> entry : groupedEnrollees.entrySet()) {
+        for (Map.Entry<String, TreeSet<Enrollee>> entry : groupedEnrollees.entrySet()) {
             String insuranceCompany = entry.getKey();
             System.out.println("Insurance Company: " + insuranceCompany);
             for (Enrollee enrollee : entry.getValue()) {
@@ -69,8 +69,8 @@ public class EnrolleeProcessor {
   
     }
 
-    private static Set<Enrollee> readCsv(String filePath){
-        Set<Enrollee> enrollees = new HashSet<>();
+    private static TreeSet<Enrollee> readCsv(String filePath){
+        TreeSet<Enrollee> enrollees = new TreeSet<>();
         BufferedReader br;
         try {
             br = Files.newBufferedReader(Paths.get(filePath));
@@ -92,15 +92,16 @@ public class EnrolleeProcessor {
         return enrollees;
     }
 
-    private static Map<String, Set<Enrollee>> groupEnrolleesByInsuranceCompany(Set<Enrollee> enrollees) {
-        Map<String, Set<Enrollee>> groupedEnrollees = new HashMap<>();
+    private static Map<String, TreeSet<Enrollee>> groupEnrolleesByInsuranceCompany(TreeSet<Enrollee> enrollees) {
+        Map<String, TreeSet<Enrollee>> groupedEnrollees = new HashMap<>();
 
         for (Enrollee enrollee : enrollees) {
             if (!groupedEnrollees.containsKey(enrollee.insuranceCompany)) {
-                groupedEnrollees.put(enrollee.insuranceCompany, new HashSet<>());
+                groupedEnrollees.put(enrollee.insuranceCompany, new TreeSet<>());
             }
             groupedEnrollees.get(enrollee.insuranceCompany).add(enrollee);
         }
+        
 
         return groupedEnrollees;
     }
